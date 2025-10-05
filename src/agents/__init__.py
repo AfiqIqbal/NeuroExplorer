@@ -6,6 +6,7 @@ import pkgutil
 import logging
 
 from .base_agent import BaseAgent
+from .pdf_agent import PDFAgent
 
 class AgentRegistry:
     """Manages file type agents and routes files to the appropriate handlers."""
@@ -63,4 +64,9 @@ class AgentRegistry:
 
 # Global registry instance
 registry = AgentRegistry()
+
+# Register built-in agents
+registry.register_agent(PDFAgent())
+
+# Discover additional agents from the agents directory
 registry.discover_agents()
