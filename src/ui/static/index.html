@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NeuroExplorer</title>
+  <link rel="stylesheet" href="/static/styles.css" />
+</head>
+<body>
+  <div class="background">
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+  </div>
+
+  <div class="app-shell">
+    <header class="top-bar">
+      <div class="brand">
+        <span class="brand-mark" aria-hidden="true"></span>
+        <span class="brand-name">NeuroExplorer</span>
+      </div>
+      <button id="resetButton" class="ghost-button" type="button">Reset</button>
+    </header>
+
+    <main class="dashboard" role="main">
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="hero-canvas">
+          <div class="search-surface" role="search" aria-label="Semantic search">
+            <div class="search-input-row">
+              <input
+                id="searchInput"
+                type="search"
+                placeholder="Search your workspace"
+                autocomplete="off"
+                aria-label="Semantic search query"
+              />
+              <button id="searchButton" type="button">Search</button>
+            </div>
+            <div class="search-results" id="searchResults" aria-live="polite"></div>
+          </div>
+
+          <div class="hero-visual" aria-hidden="true">
+            <div class="sphere" id="heroSphere">
+              <div class="sphere-core"></div>
+              <div class="sphere-rim"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="filters-panel" role="group" aria-label="Search filters">
+          <label class="filter-field">
+            <span>Agent</span>
+            <select id="agentFilter">
+              <option value="">All</option>
+            </select>
+          </label>
+          <label class="filter-field">
+            <span>File type</span>
+            <select id="typeFilter">
+              <option value="">All</option>
+            </select>
+          </label>
+          <label class="toggle-field">
+            <input type="checkbox" id="includeIgnored" />
+            <span>Include ignored directories</span>
+          </label>
+        </div>
+      </section>
+
+      <section class="status-bar" id="status" aria-live="polite"></section>
+    </main>
+  </div>
+
+  <template id="file-card-template">
+    <article class="card" tabindex="0">
+      <header class="card-header">
+        <div class="card-title">
+          <span class="file-type-pill"></span>
+          <h2 class="file-name"></h2>
+        </div>
+        <span class="agent-chip"></span>
+      </header>
+
+      <div class="preview" data-role="preview" aria-hidden="true"></div>
+
+      <p class="summary"></p>
+
+      <dl class="details">
+        <div>
+          <dt>Path</dt>
+          <dd class="path"></dd>
+        </div>
+      </dl>
+
+      <div class="tag-list" data-role="tags"></div>
+
+      <footer class="card-footer">
+        <button type="button" data-action="copy-path">Copy path</button>
+        <span class="score-chip hidden">
+          <span class="label">Score</span>
+          <span class="score"></span>
+        </span>
+      </footer>
+    </article>
+  </template>
+
+  <script src="/static/app.js" type="module"></script>
+</body>
+</html>
